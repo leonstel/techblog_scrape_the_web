@@ -46,7 +46,6 @@ def extractTournamentInfo(soup, tournament_id):
         entry['id'] = tournament_id
 
         attribute = row.find('th').getText().replace(":", "").lower()
-
         data = row.find('td').getText()
 
         if TournamentAttr(attribute) == TournamentAttr.LOCATION:
@@ -125,6 +124,7 @@ def extractMatches(soup):
 
                 print('save extracted match '+ score1 + '-' + score2 + ': ' + contestant1 + '-' + contestant2 +' to global variable')
 
+                # save the matches to a pandas dataframe so that they could be processed later on by the processMatches function
                 globals.matches_df = globals.matches_df.append(entry, ignore_index=True)
     else:
         print('Not match table found!')
