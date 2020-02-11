@@ -142,6 +142,7 @@ def extractPlayers(soup):
     for td in tds:
         link = td.find("a")
         if link:
+
             entry = {}
 
             player_url = link.attrs.get('href')

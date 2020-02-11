@@ -19,7 +19,6 @@ def scrapeTournament(tournamentUrl):
     tournament_id = result.group(1)
 
     soup = globals.goToUrl('https://www.toernooi.nl{}', tournament_urls[index])
-
     extraction.extractTournamentInfo(soup, tournament_id)
 
     print('visit the players of this tournament')
