@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS tournament, players, games, tournament_game, scores;
