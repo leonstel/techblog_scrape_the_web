@@ -162,7 +162,7 @@ def getDb():
 
 """ 
     Database manipulation methods below, like inserting and creating entities 
-    Those will be used by the page extraction methodsfor inserting the scraped data to the database
+    Those will be used by the page extraction methods for inserting the scraped data to the database
 """
 
 def insertTournament(tournament):
