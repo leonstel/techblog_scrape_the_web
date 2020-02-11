@@ -200,11 +200,13 @@ def processMatches(tournament_id):
             score2 = match_row['score2']
             winner_id = globals.player_id_cache[match_row['winner']]
 
-            #  create game entry
+            #  save the game to the database
             game_id = db.insertGame(tournament_id, winner_id)
 
             if game_id:
 
+                # after saving the game insert 2 score entries to the database
+                # those will be linked to the game by its id and with a player by its cache player id
                 print('save game '+ str(score1) + '-' + str(score2) + ': ' + contestant1 + '-' + contestant2 +' and scores to db, link game to tournament')
                 db.insertScore(game_id, contestant1_id, score1)
                 db.insertScore(game_id, contestant2_id, score2)
