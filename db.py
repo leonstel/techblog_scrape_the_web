@@ -4,10 +4,9 @@ import psycopg2.extras
 
 psycopg2.extras.register_uuid()
 
+# read database.ini config file with al the initials
 def config(filename='database.ini', section='postgresql'):
-    # create a parser
     parser = ConfigParser()
-    # read config file
     parser.read(filename)
 
     # get section, default to postgresql
@@ -21,8 +20,9 @@ def config(filename='database.ini', section='postgresql'):
 
     return db
 
+
+""" Connect to the PostgreSQL database server """
 def connect():
-    """ Connect to the PostgreSQL database server """
     conn = None
     try:
         # read connection parameters
@@ -36,8 +36,8 @@ def connect():
         conn.close()
 
 
+""" Db class wrapper for executing queries """
 class Db:
-
     client = None
 
     @staticmethod
@@ -101,6 +101,7 @@ class Db:
 
         return rows
 
+# drops the databases table by running the droptable.sql
 def droptables():
     """ create tables in the PostgreSQL database"""
     conn = None
@@ -125,6 +126,8 @@ def droptables():
         if conn is not None:
             conn.close()
 
+
+# resting the db means, first dropping al table then creating them again
 def resetDB():
     droptables()
 
@@ -152,8 +155,15 @@ def resetDB():
         if conn is not None:
             conn.close()
 
+# returns a new DB instance
 def getDb():
     return Db.setup()
+
+
+""" 
+    Database manipulation methods below, like inserting and creating entities 
+    Those will be used by the page extraction methodsfor inserting the scraped data to the database
+"""
 
 def insertTournament(tournament):
     db = getDb()
