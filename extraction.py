@@ -4,6 +4,7 @@ import globals
 
 import db
 
+# enum for the tournament's information on its detail page
 class TournamentAttr(Enum):
     LOCATION = "locatie"
     ADDRESS = "adres"
@@ -12,6 +13,7 @@ class TournamentAttr(Enum):
     WEBSITE = "website"
     FAX = "fax"
 
+# extracts the tournament urls form the search result overview
 def extracyTournamentUrls(soup):
     print('get tournament urls from page')
 
@@ -29,10 +31,9 @@ def extracyTournamentUrls(soup):
     return urls
 
 
+# extracts the tournament information from its detail page
 def extractTournamentInfo(soup, tournament_id):
     print('extract tournament info from page')
-
-    # tournament_info = pd.DataFrame(columns=['id', 'location', 'address', 'phone', 'fax', 'email', 'website'])
 
     table = soup.find("table", {"id": "cphPage_cphPage_cphPage_tblContactInformation"})
     tbody = soup.find("tbody")
@@ -48,7 +49,6 @@ def extractTournamentInfo(soup, tournament_id):
 
         data = row.find('td').getText()
 
-        # try:
         if TournamentAttr(attribute) == TournamentAttr.LOCATION:
             entry['location'] = data
 
@@ -71,15 +71,14 @@ def extractTournamentInfo(soup, tournament_id):
 
         else:
             print('Attribute not found!!!', attribute)
-        # except:
-        #     print('something went wrong with the enum checkinf')
-
-    # tournament_info = tournament_info.append(entry, ignore_index=True)
 
     print('save tournament info to db')
 
     db.insertTournament(entry)
 
+# extract the matches from the tournament player's detail page
+# the matches won't be saved to the database immediately but saved
+# to a matches dataframe for later use
 def extractMatches(soup):
     print('extract matches from page')
 
@@ -130,6 +129,9 @@ def extractMatches(soup):
     else:
         print('Not match table found!')
 
+# extracts the players of the tournament in question
+# the database id's of the inserted players will be cache in a dictionary (globals.player_id_cache)
+# so that you have instant access to them without having the need for unnecessary repetitive select queries on the database
 def extractPlayers(soup):
     print('extract players from page')
 
@@ -147,13 +149,7 @@ def extractPlayers(soup):
 
             print('handler player ' + player)
 
-            # // python does not support regex conditional statements
-            # it works on regex101 though https://regex101.com/r/1lwQEF/4
-            # result = re.search(r"((?(?=,))(\w+), (\w+)(.*)|.*)", player)
-            # name Kempen, Jonathan
-            # and indonisian name laek surav aar oke
-            # could be found on index 4
-
+            # check the blog's player' name regex section for additional info
             result = re.search(r"(\w+), (\w+)(.*)", player)
 
             if not result or (not result[2] or not result[1]):
@@ -167,7 +163,7 @@ def extractPlayers(soup):
             entry['firstname'] = firstname
             entry['lastname'] = lastname
 
-            globals.players_df = globals.players_df.append(entry, ignore_index=True)
+            # globals.players_df = globals.players_df.append(entry, ignore_index=True)
 
             print('save player to database')
 
@@ -187,6 +183,7 @@ def extractPlayers(soup):
             soup = globals.goToUrl(url, player_url)
 
             extractMatches(soup)
+
 
 def processMatches(tournament_id):
     print('process the saved matches, save to db with cached player ids')

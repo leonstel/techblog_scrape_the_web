@@ -233,15 +233,3 @@ def insertScore(game_id, player_id, amount):
 
     score_id = db.insert(query, game_id, player_id, amount)
     return score_id
-
-# def linkTournamentToGame(tournament_id, game_id):
-#     db = getDb()
-#
-#     query = """
-#                 INSERT INTO tournament_game(tournament_id, game_id)
-#                 VALUES(%s, %s)
-#                 RETURNING id;
-#             """
-#
-#     tournament_game_id = db.insert(query, tournament_id, game_id)
-#     return tournament_game_id
