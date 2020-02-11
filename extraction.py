@@ -163,14 +163,10 @@ def extractPlayers(soup):
             entry['firstname'] = firstname
             entry['lastname'] = lastname
 
-            # globals.players_df = globals.players_df.append(entry, ignore_index=True)
-
             print('save player to database')
-
             last_inserted_player_id = db.insertPlayer(entry)
 
             print('cache inserted player id')
-
             player_id_cache_key = entry['firstname'] + ' ' + entry['lastname']
             globals.player_id_cache[player_id_cache_key] = last_inserted_player_id
 
@@ -178,13 +174,15 @@ def extractPlayers(soup):
                 raise Exception('Player not inserted into db correctly')
 
             print('visit matches page of the player')
-
             url = 'https://www.toernooi.nl{}'
             soup = globals.goToUrl(url, player_url)
 
             extractMatches(soup)
 
 
+# The processing of matches happens when all other extracting has been done
+# it takes and saves the matches to the database. It uses with that the cached player ids
+# without the cached player ids it should do a ton of unnecessary select database queries. You should avoid that!
 def processMatches(tournament_id):
     print('process the saved matches, save to db with cached player ids')
 
@@ -206,9 +204,7 @@ def processMatches(tournament_id):
             if game_id:
 
                 print('save game '+ str(score1) + '-' + str(score2) + ': ' + contestant1 + '-' + contestant2 +' and scores to db, link game to tournament')
-
                 db.insertScore(game_id, contestant1_id, score1)
                 db.insertScore(game_id, contestant2_id, score2)
-                # db.linkTournamentToGame(tournament_id, game_id)
             else:
                 print('Could not save game to DB!')

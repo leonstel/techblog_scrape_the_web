@@ -4,7 +4,6 @@ from selenium import webdriver
 
 browser = webdriver.Chrome()
 
-# players_df = pd.DataFrame()
 matches_df = pd.DataFrame()
 player_id_cache = {}
 
