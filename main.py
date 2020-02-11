@@ -4,10 +4,11 @@ import re
 import db
 import globals
 import extraction
+import selenium
 
 # removes the allow cookies popup
 def allowCookies():
-    yes = globals.browser.find_element_by_link_text("JA, IK GEEF TOESTEMMING")
+    yes = globals.browser.find_element_by_xpath("//*[text()='Akkoord']")
     yes.click()
 
 # scrapes a tournament and its players and matches from its detail url
