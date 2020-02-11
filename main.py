@@ -8,8 +8,8 @@ import selenium
 
 # removes the allow cookies popup
 def allowCookies():
-    yes = globals.browser.find_element_by_xpath("//*[text()='Akkoord']")
-    yes.click()
+    cookieButton = globals.browser.find_element_by_xpath("//*[text()='Akkoord']")
+    cookieButton.click()
 
 # scrapes a tournament and its players and matches from its detail url
 def scrapeTournament(tournamentUrl):
