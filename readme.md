@@ -58,6 +58,8 @@ These topics will join us on our epic journey.
 - Interactive Web Scraping
 - Database design / querying
 
+## Get It Running
+
 Fill in the database.ini with your own database credentials. The code project is based on
 Postgres.
 ```
