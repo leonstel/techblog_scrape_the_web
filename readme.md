@@ -58,4 +58,22 @@ These topics will join us on our epic journey.
 - Interactive Web Scraping
 - Database design / querying
 
+Fill in the database.ini with your own database credentials. The code project is based on
+Postgres.
+```
+# database.ini
+
+[postgresql]
+host=localhost
+database=scraping
+user=postgres
+password=
+```
+
+On start the code will automatically create te tables for you.
+The main.py is the main entry point. 
+```
+python main.py
+```
+
 [Other Blog Posts](http://leonstel.github.io/)
