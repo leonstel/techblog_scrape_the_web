@@ -57,3 +57,5 @@ These topics will join us on our epic journey.
 - Python and effective database connections
 - Interactive Web Scraping
 - Database design / querying
+
+[Other Blog Posts](http://leonstel.github.io/)
