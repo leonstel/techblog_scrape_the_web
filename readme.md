@@ -41,9 +41,7 @@ This is the final web scraping solution which we are building up to.
 
 The scraper in action (sounds like a new Hollywood action blockbuster or a sequel of The Terminator).
 
-<p align="center">
-    <iframe src="https://www.youtube.com/embed/zhJYiblYazY" width="700" height="450" frameborder="0" allowfullscreen> </iframe>
-</p>
+[![](http://img.youtube.com/vi/zhJYiblYazY/0.jpg)](http://www.youtube.com/watch?v=zhJYiblYazY "")
 
 - Scraping and saving to db the tournaments, its players and games. **(begin - 2:06)**
 - Show resulted db tables in DataGrip db viewer **(2:06 - end)**
