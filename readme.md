@@ -68,7 +68,7 @@ user=postgres
 password=
 ```
 
-On start the code will automatically create te tables for you.
+On start the code will automatically create te tables for you through the migration sql.
 The main.py is the main entry point. 
 ```
 python main.py
