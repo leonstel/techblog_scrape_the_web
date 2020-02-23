@@ -74,4 +74,7 @@ The main.py is the main entry point.
 python main.py
 ```
 
+## Links
+[Scrape the Web - Take a Bet](http://leonstel.github.io/blogs/scrape_the_web1)  
+
 [Other Blog Posts](http://leonstel.github.io/)
