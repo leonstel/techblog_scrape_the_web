@@ -1,6 +1,6 @@
 # Scrape the Web - Take a Bet
 
-<img src="assets/horse_racing.jpg" />
+<img src="./assets/horse_racing.jpg" />
 
 For a while now the possibilities of machine learning have fascinated me. Though I was doing some for fun on the side I 
 have decided too take it more seriously. By chance, with that thought in my mind, I have came across the company [Springco](https://www.spring-co.nl/) which
