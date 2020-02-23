@@ -1,4 +1,4 @@
-# Scraping the Web - Taking a Bet
+# Scrape the Web - Take a Bet
 
 <img src="./assets/horse_racing.jpg" />
 
